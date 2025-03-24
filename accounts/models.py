@@ -1,5 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+
+class UserRole(models.TextChoices):
+    CLIENT = 'CLIENT', 'Клиент'
+    DRIVER = 'DRIVER', 'Водитель'
+    ADMIN = 'ADMIN', 'Администратор'
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    role = models.CharField(
+        max_length=20,
+        choices=UserRole.choices,
+        default=UserRole.CLIENT,
+        verbose_name='Роль пользователя'
+    )
+
+    class Meta:
+        verbose_name = 'Профиль пользователя'
+        verbose_name_plural = 'Профили пользователей'
+
+    def __str__(self):
+        return f"{self.user.username} - {self.get_role_display()}"
 
 class City(models.Model):
     code = models.AutoField(primary_key=True)
@@ -72,10 +94,11 @@ class AdditionalService(models.Model):
 
 
 class Client(models.Model):
-    code = models.AutoField(primary_key=True)
+    code = models.AutoField(primary_key=True, serialize=False)
     first_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     phone_number = models.CharField(max_length=15, verbose_name='Номер телефона')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='client')
 
     class Meta:
         verbose_name = 'Клиент'
@@ -86,6 +109,7 @@ class Client(models.Model):
 
 
 class Driver(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='driver', null=True)
     code = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, verbose_name='Имя водителя')
     license_issue_date = models.DateField(verbose_name='Дата выдачи прав')
@@ -114,6 +138,7 @@ class TripDriver(models.Model):
 
 class Profit(models.Model):
     code = models.AutoField(primary_key=True)
+    date = models.DateField(verbose_name='Дата вывода')
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, verbose_name='Водитель')
     amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Сумма')
 

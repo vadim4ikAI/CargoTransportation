@@ -7,27 +7,27 @@
     <style>
   body {
             font-family: Arial, sans-serif;
-            background-color: #1a1a1a; /* Темный фон */
-            color: #fff; /* Белый текст */
+            background-color: #1a1a1a; 
+            color: #fff; 
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрирование по горизонтали */
-            justify-content: center; /* Центрирование по вертикали */
-            height: 100vh; /* Высота на весь экран */
-            margin: 0; /* Убираем отступы */
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
         }
         h2 {
-            margin-bottom: 20px; /* Отступ снизу для заголовка */
-            text-align: center; /* Центрирование заголовка */
+            margin-bottom: 20px; 
+            text-align: center; 
         }
         form {
-            background-color: #333; /* Фон формы */
+            background-color: #333; 
             padding: 20px;
-            border-radius: 15px; /* Закругленные углы */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Тень */
-            width: 300px; /* Ширина формы */
-            text-align: left; /* Выравнивание текста в форме */
-            box-sizing: border-box; /* Учитывать отступы и границы в ширине */
+            border-radius: 15px; 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); 
+            width: 300px; 
+            text-align: left; 
+            box-sizing: border-box; 
         }
         label {
             display: block;
@@ -35,42 +35,41 @@
             color: #fff;
         }
         input {
-            width: 270px; /* Учитываем отступы */
-            padding: 8px; /* Уменьшенный отступ */
-            padding-right: 8px;
-            margin-bottom: 15px; /* Отступ снизу для полей ввода */
+            width: 270px; 
+            padding: 8px;
+            margin-bottom: 15px; 
             border: 1px solid #444;
-            border-radius: 5px; /* Закругленные углы */
-            background-color: #222; /* Темный фон для полей ввода */
-            color: #fff; /* Белый текст */
-            box-sizing: border-box; /* Учитывать отступы и границы в ширине */
+            border-radius: 5px; 
+            background-color: #222; 
+            color: #fff; 
+            box-sizing: border-box; 
         }
         button {
-            background-color: #28a745; /* Цвет кнопки */
+            background-color: #28a745; 
             color: white;
             padding: 10px;
             border: none;
-            border-radius: 5px; /* Закругленные углы */
+            border-radius: 5px; 
             cursor: pointer;
-            width: 104%; /* Ширина кнопки на всю ширину родителя */
-            font-size: 16px; /* Увеличенный шрифт */
+            width: 104%; 
+            font-size: 16px; 
         }
         button:hover {
-            background-color: #218838; /* Цвет кнопки при наведении */
+            background-color: #218838; 
         }
         .register-link {
-            margin-top: 15px; /* Отступ сверху для ссылки регистрации */
+            margin-top: 15px; 
             color: #fff;
-            text-align: center; /* Центрирование ссылки */
-            display: block; /* Блочный элемент для центрирования */
+            text-align: center; 
+            display: block; 
         }
         .success-message {
             color: green;
-            text-align: center; /* Центрирование сообщения */
+            text-align: center; 
         }
         .error-message {
             color: red;
-            text-align: center; /* Центрирование сообщения */
+            text-align: center; 
         }
     </style>
 </head>
@@ -91,6 +90,12 @@
         <input type="text" name="username" id="username" required>
         <label for="password">Пароль:</label>
         <input type="password" name="password" id="password" required>
+        <label for="first_name">Имя:</label>
+        <input type="text" name="first_name" id="first_name" required>
+        <label for="last_name">Фамилия:</label>
+        <input type="text" name="last_name" id="last_name" required>
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" name="phone_number" id="phone_number" required>
         <button type="submit">Зарегистрироваться</button>
     </form>
     <a href="{% url 'login' %}" class="register-link">Уже есть аккаунт? Войти</a>

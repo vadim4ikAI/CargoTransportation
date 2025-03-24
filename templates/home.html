@@ -5,73 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargo Transportation</title>
     {% load static %}
-    <link rel="icon" href="{% static 'logo.png' %}" type="image/png"> <!-- Убедитесь, что путь правильный -->
+    <link rel="icon" href="{% static 'logo.png' %}" type="image/png">
     <style>
         html, body {
-            height: 100%; /* Высота на весь экран */
-            margin: 0; /* Убираем отступы */
-            overflow-x: hidden; /* Убираем горизонтальный скролл */
+            height: 100%; 
+            margin: 0; 
+            overflow-x: hidden; 
         }
         body {
             font-family: Arial, sans-serif;
-            background-color: #1a1a1a; /* Темный фон */
-            color: #fff; /* Белый текст */
+            background-color: #1a1a1a; 
+            color: #fff; 
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрирование по горизонтали */
+            align-items: center; 
         }
         .header {
             width: 100%;
-            background-color: #222; /* Цвет фона шапки */
+            background-color: #222; 
             display: flex;
-            justify-content: space-between; /* Выравнивание по краям */
-            align-items: center; /* Центрирование по вертикали */
-            padding: 10px 40px; /* Отступы */
+            justify-content: space-between;
+            align-items: center; 
+            padding: 10px 40px; 
         }
         .header h1 {
-            margin: 0; /* Убираем отступы */
-            padding-left: 20px; /* Отступ слева */
+            margin: 0; 
+            padding-left: 20px; 
         }
         .header a {
             color: #fff;
             text-decoration: none;
-            background-color: #007bff; /* Цвет кнопки */
+            background-color: #28a745; 
             padding: 10px 15px;
             border-radius: 5px;
-            margin-right: 20px; /* Отступ справа */
+            margin-right: 20px; 
         }   
         .container {
             width: 80%;
-            max-width: 1200px; /* Максимальная ширина */
-            margin: 150px auto; /* Отступ сверху */
-            display: flex; /* Изменено для размещения форм рядом */
-            justify-content: space-between; /* Выравнивание по краям */
-            align-items: flex-start; /* Выравнивание по верхнему краю */
-            flex: 1; /* Занимает оставшееся пространство */
+            max-width: 1200px; 
+            margin: 150px auto; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: flex-start; 
+            flex: 1; 
         }
         h1 {
             text-align: center;
             color: #fff;
-            margin-bottom: 20px; /* Отступ снизу для заголовка */
+            margin-bottom: 20px; 
         }
         .section {
             margin-bottom: 20px;
-            flex: 1; /* Позволяет секциям занимать равное пространство */
-            margin-right: 10px; /* Отступ между секциями */
-            text-align: center; /* Центрирование текста в секциях */
+            flex: 1; 
+            margin-right: 10px; 
+            text-align: center; 
         }
         .section:last-child {
-            margin-right: 0; /* Убираем отступ у последней секции */
+            margin-right: 0;
         }
         .section h2 {
             color: #fff;
             border-bottom: 2px solid #444;
             padding-bottom: 10px;
-            margin-top: 20px; /* Отступ сверху для заголовков */
+            margin-top: 20px; 
         }
         .form-group {
             margin-bottom: 15px;
-            text-align: left; /* Выровнять текст по левому краю */
+            text-align: left; 
         }
         .form-group label {
             display: block;
@@ -79,65 +79,66 @@
             color: #fff;
         }
         .form-group input {
-            width: calc(100% - 60px); /* Уменьшение ширины для кнопки */
+            width: calc(100% - 60px); 
             padding: 8px;
             box-sizing: border-box;
             background-color: #333;
             border: 1px solid #444;
             color: #fff;
-            display: inline-block; /* Для размещения кнопки рядом */
+            display: inline-block; 
         }
         .button-search {
             background-color: #28a745;
             color: white;
-            padding: 10px; /* Уменьшены отступы */
+            padding: 10px; 
             border: none;
             cursor: pointer;
-            border-radius: 5px; /* Закругленные углы */
-            width: 40px; /* Фиксированная ширина для кнопки поиска */
-            height: 40px; /* Фиксированная высота для кнопки поиска */
-            display: inline-block; /* Для размещения рядом с полем ввода */
-            margin-left: 5px; /* Отступ слева от кнопки */
+            border-radius: 5px; 
+            width: 40px; 
+            height: 40px; 
+            display: inline-block; 
+            margin-left: 5px; 
         }
         .button-switch {
             background-color: #28a745;
             color: white;
-            padding: 5px; /* Уменьшенные отступы */
+            padding: 5px; 
             border: none;
             align-self: center;
             cursor: pointer;
-            border-radius: 5px; /* Закругленные углы */
-            width: 40px; /* Фиксированная ширина для кнопки смены местами */
-            height: 40px; /* Фиксированная высота для кнопки смены местами */
-            margin-top: 10px; /* Отступ сверху */
+            border-radius: 5px; 
+            width: 40px; 
+            height: 40px; 
+            margin-top: 10px; 
         }
         .button-calculate {
             background-color: #28a745;
             color: white;
-            padding: 10px 15px; /* Уменьшенные отступы */
+            padding: 10px 15px; 
             border: none;
             cursor: pointer;
-            border-radius: 5px; /* Закругленные углы */
-            width: 100%; /* Ширина кнопки на всю ширину родителя */
-            max-width: 120px; /* Максимальная ширина кнопки */
-            margin-top: 10px; /* Отступ сверху */
+            border-radius: 5px; 
+            width: 100%; 
+            max-width: 120px;
+            margin-top: 10px; 
         }
         .button:hover {
             background-color: #218838;
         }
         .city-info {
+            position: relative;
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
-            display: flex; /* Используем flex для выравнивания */
-            flex-direction: column; /* Вертикальное расположение */
-            align-items: stretch; /* Растянуть элементы по ширине */
+            display: flex; 
+            flex-direction: column; 
+            align-items: stretch;
         }
         .city-info label {
-            margin-top: 10px; /* Отступ сверху для меток */
+            margin-top: 10px;
         }
         .footer {
-            width: 100%; /* Ширина на весь экран */
+            width: 100%; 
             text-align: center;
             padding: 20px;
             background-color: #222;
@@ -149,7 +150,26 @@
         .footer a {
             color: #fff;
             text-decoration: none;
-            margin: 0 10px; /* Отступы между ссылками */
+            margin: 0 10px; 
+        }
+        .autocomplete-list {
+            position: absolute;
+            background-color: #444;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            max-height: 100px;
+            overflow-y: auto;
+            width: 50%;
+            margin-top: 5px;
+        }
+        .autocomplete-item {
+            padding: 4px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+        }
+        .autocomplete-item:hover {
+            background-color: #28a745;
         }
     </style>
 </head>
@@ -157,8 +177,11 @@
     <div class="header">
         <h1>Cargo Transportation</h1>
         {% if user.is_authenticated %}
-            <span>{{ "Добро пожаловать, "|add:user.username }}</span>
-            <a href="{% url 'logout' %}" style="background-color: #dc3545;">Выйти</a>
+            <div class="header-controls">
+                <span>{{ "Добро пожаловать, "|add:user.username }}!</span>
+                <a href="{% url 'cabinet' %}" style="background-color: #28a745;">Личный кабинет</a>
+                <a href="{% url 'logout' %}" style="background-color: #dc3545;">Выйти</a>
+            </div>
         {% else %}
             <a href="{% url 'login' %}" style="background-color: #28a745;">Войти</a>
         {% endif %}
@@ -169,7 +192,7 @@
             <div class="form-group">
                 <label for="orderNumber">Номер заказа</label>
                 <input type="text" id="orderNumber" name="orderNumber" placeholder="Введите номер заказа">
-                <button class="button-search">🔍</button> <!-- Иконка лупы -->
+                <button class="button-search">🔍</button>
                 <p>Не знаете номер заказа?</p>
             </div>
         </div>
@@ -178,21 +201,32 @@
             <h2>Отправить груз</h2>
             <div class="city-info">
                 <label for="cityFrom">Город отправки</label>
-                <input type="text" id="cityFrom" placeholder="г. Москва" style="width: calc(100% - 60px); padding: 8px;
-                 box-sizing: border-box; background-color: #333; border: 1px solid #444; color: #fff; display: inline-block; align-self: center;">
-                <button class="button-switch" onclick="switchCities()">⇵</button> <!-- Кнопка для смены местами -->
+                <input type="text" id="cityFrom" placeholder="г. Москва" 
+                       style="width: calc(100% - 60px); padding: 8px; box-sizing: border-box; 
+                              background-color: #333; border: 1px solid #444; color: #fff; 
+                              display: inline-block; align-self: center;" 
+                       oninput="fetchCities(this.value, 'cityFromList')">
+                <div id="cityFromList" class="autocomplete-list" style="display: none;"></div>
+                
+                <button class="button-switch" onclick="switchCities()">⇵</button> 
+                
                 <label for="cityTo">Город получения</label>
-                <input type="text" id="cityTo" placeholder="г. Санкт-Петербург" style="width: calc(100% - 60px); padding: 8px;
-                 box-sizing: border-box; background-color: #333; border: 1px solid #444; color: #fff; display: inline-block;align-self: center;">
+                <input type="text" id="cityTo" placeholder="г. Санкт-Петербург" 
+                       style="width: calc(100% - 60px); padding: 8px; box-sizing: border-box; 
+                              background-color: #333; border: 1px solid #444; color: #fff; 
+                              display: inline-block; align-self: center;" 
+                       oninput="fetchCities(this.value, 'cityToList')">
+                <div id="cityToList" class="autocomplete-list" style="display: none;"></div>
             </div>
             <button class="button-calculate">Расчитать</button>
+            <div id="result"></div>
         </div>
         
         <div class="section">
             <h2>Нужна помощь?</h2>
             <p>Ответы на вопросы, решения проблем,
                  информация об услугах, адресах и способах связи.</p>
-            <button class="button-switch">→</button> <!-- Иконка лупы -->
+            <button class="button-switch">→</button> 
         </div>
     </div>
 
@@ -208,15 +242,79 @@
 
     <script>
         function switchCities() {
-            // Получаем значения из полей
             const cityFrom = document.getElementById('cityFrom');
             const cityTo = document.getElementById('cityTo');
-
-            // Меняем местами значения
             const temp = cityFrom.value;
             cityFrom.value = cityTo.value;
             cityTo.value = temp;
         }
+
+        function fetchCities(query, listId) {
+            if (query.length < 2) {
+                document.getElementById(listId).style.display = 'none';
+                return;
+            }
+
+            fetch(`/get-cities/?term=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById(listId);
+                    list.innerHTML = ''; // Очистка предыдущих результатов
+                    if (data.length > 0) {
+                        data.forEach(city => {
+                            const item = document.createElement('div');
+                            item.textContent = city;
+                            item.classList.add('autocomplete-item');
+                            item.onclick = () => selectCity(city, listId);
+                            list.appendChild(item);
+                        });
+                        list.style.display = 'block';
+                    } else {
+                        list.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Ошибка:', error)); // Обработка ошибок
+        }
+
+        function selectCity(city, listId) {
+            document.getElementById(listId).style.display = 'none';
+            document.getElementById(listId.replace('List', '')).value = city; // Установка значения в поле ввода
+        }
+
+        document.querySelector('.button-calculate').addEventListener('click', function() {
+            const departureCity = document.getElementById('cityFrom').value;
+            const arrivalCity = document.getElementById('cityTo').value;
+
+            // Проверка на наличие выбранных городов
+            if (!departureCity || !arrivalCity) {
+                alert('Пожалуйста, выберите оба города.');
+                return;
+            }
+
+            // Отправляем данные на сервер
+            fetch('/calculate-route/', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+                   'X-CSRFToken': '{{ csrf_token }}'  // Убедитесь, что CSRF-токен включен
+               },
+               body: JSON.stringify({
+                   departure_city: departureCity,
+                   arrival_city: arrivalCity
+               })
+           })
+            .then(response => response.json())
+            .then(data => {
+                // Отображаем результаты
+                const resultDiv = document.getElementById('result');
+                if (data.error) {
+                    resultDiv.textContent = `Ошибка: ${data.error}`;
+                } else {
+                    resultDiv.textContent = `Расстояние: ${data.distance} км, Цена: ${data.price} руб.`;
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+        });
     </script>
 </body>
 </html>
